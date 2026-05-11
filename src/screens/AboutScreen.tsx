@@ -1,7 +1,11 @@
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView, Image } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Card } from 'react-native-elements';
+import { Card as ElementsCard } from 'react-native-elements';
+
+const CardContainer = ElementsCard as React.ComponentType<
+  React.ComponentProps<typeof ElementsCard> & { children?: React.ReactNode }
+>;
 
 export default function AboutScreen() {
   return (
@@ -20,27 +24,27 @@ export default function AboutScreen() {
           passed down through generations.
         </Text>
         
-        <Card containerStyle={styles.card}>
-          <Card.Title>Our Mission</Card.Title>
-          <Card.Divider />
+        <CardContainer containerStyle={styles.card}>
+          <ElementsCard.Title>Our Mission</ElementsCard.Title>
+          <ElementsCard.Divider />
           <Text style={styles.cardText}>
             At DevSwaD, our mission is to celebrate and promote the rich culinary heritage of Bihar 
             while supporting local farmers and artisans. We strive to deliver premium quality, 
             authentic Bihari products that not only tantalize taste buds but also contribute to 
             the well-being of our customers and communities.
           </Text>
-        </Card>
+        </CardContainer>
         
         <Text style={styles.sectionTitle}>Our Values</Text>
         {['Authenticity', 'Quality', 'Sustainability'].map((value, index) => (
-          <Card key={index} containerStyle={styles.card}>
-            <Card.Title>{value}</Card.Title>
-            <Card.Divider />
+          <CardContainer key={index} containerStyle={styles.card}>
+            <ElementsCard.Title>{value}</ElementsCard.Title>
+            <ElementsCard.Divider />
             <Text style={styles.cardText}>
               We are committed to {value.toLowerCase()} in every aspect of our business, 
               from sourcing ingredients to delivering products to your doorstep.
             </Text>
-          </Card>
+          </CardContainer>
         ))}
       </ScrollView>
     </SafeAreaView>

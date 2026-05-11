@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Input, Button, Card } from 'react-native-elements';
+import { Input, Button, Card as ElementsCard } from 'react-native-elements';
 import { Ionicons } from '@expo/vector-icons';
+
+const CardContainer = ElementsCard as React.ComponentType<
+  React.ComponentProps<typeof ElementsCard> & { children?: React.ReactNode }
+>;
 
 export default function ContactScreen() {
   const [name, setName] = useState('');
@@ -25,7 +29,7 @@ export default function ContactScreen() {
       <ScrollView>
         <Text style={styles.title}>Contact Us</Text>
         
-        <Card containerStyle={styles.card}>
+        <CardContainer containerStyle={styles.card}>
           <Input
             placeholder="Your Name"
             leftIcon={<Ionicons name="person-outline" size={24} color="#2E8B57" />}
@@ -52,11 +56,11 @@ export default function ContactScreen() {
             onPress={handleSubmit}
             buttonStyle={styles.submitButton}
           />
-        </Card>
+        </CardContainer>
         
-        <Card containerStyle={styles.card}>
-          <Card.Title>Contact Information</Card.Title>
-          <Card.Divider />
+        <CardContainer containerStyle={styles.card}>
+          <ElementsCard.Title>Contact Information</ElementsCard.Title>
+          <ElementsCard.Divider />
           <View style={styles.contactItem}>
             <Ionicons name="location-outline" size={24} color="#2E8B57" />
             <Text style={styles.contactText}>123 Bihar Street, Patna, Bihar 800001</Text>
@@ -69,15 +73,15 @@ export default function ContactScreen() {
             <Ionicons name="mail-outline" size={24} color="#2E8B57" />
             <Text style={styles.contactText}>info@devswad.com</Text>
           </View>
-        </Card>
+        </CardContainer>
         
-        <Card containerStyle={styles.card}>
-          <Card.Title>Business Hours</Card.Title>
-          <Card.Divider />
+        <CardContainer containerStyle={styles.card}>
+          <ElementsCard.Title>Business Hours</ElementsCard.Title>
+          <ElementsCard.Divider />
           <Text style={styles.businessHours}>Monday - Friday: 9:00 AM - 6:00 PM</Text>
           <Text style={styles.businessHours}>Saturday: 10:00 AM - 4:00 PM</Text>
           <Text style={styles.businessHours}>Sunday: Closed</Text>
-        </Card>
+        </CardContainer>
       </ScrollView>
     </SafeAreaView>
   );
